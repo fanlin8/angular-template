@@ -1,0 +1,17 @@
+<md-toolbar color="primary">
+  <a class="navbar-pic" routerLink="/main"><img [src]="'assets/img/angular.png'"/></a>
+
+  <button class="nav-button" md-button [mdMenuTriggerFor]="pagesMenu">
+  Pages
+  </button>
+  <md-menu #pagesMenu="mdMenu">
+    <button md-menu-item routerLink="page-one" routerLinkActive="active">Page One</button>
+    <button md-menu-item routerLink="page-two" routerLinkActive="active">Page Two</button>
+    <button disabled md-menu-item routerLink="" routerLinkActive="active">Disabled</button>
+  </md-menu>
+
+  <button md-button class="nav-button" routerLink="page-three" routerLinkActive="active">Page Three</button>
+  <button md-button class="nav-button" routerLink="admin" routerLinkActive="active">Admin</button>
+
+  <button md-button id="logoutButton"><md-icon>exit_to_app</md-icon>Logout</button>
+</md-toolbar>
