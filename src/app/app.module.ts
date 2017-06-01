@@ -7,10 +7,20 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "@angular/material";
 
 import { AppComponent } from './app.component';
+import { PageOneComponent } from './page-one/page-one.component';
+import { PageTwoComponent } from './page-two/page-two.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { PageThreeComponent } from './page-three/page-three.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageOneComponent,
+    PageTwoComponent,
+    MainPageComponent,
+    AdminPageComponent,
+    PageThreeComponent
   ],
   imports: [
     BrowserModule,
