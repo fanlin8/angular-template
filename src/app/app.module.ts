@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 
 import { MainPageModule } from "app/main-page/main-page.module";
 import { WelcomePageComponent } from "./welcome-page/welcome-page.component";
+import { AuthService } from "app/services/auth.service";
+import { AuthGuardService } from "app/services/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { WelcomePageComponent } from "./welcome-page/welcome-page.component";
     AppRoutingModule,
     MainPageModule
   ],
-  providers: [],
+  providers: [
+    AuthGuardService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

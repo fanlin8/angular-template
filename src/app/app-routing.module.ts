@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { WelcomePageComponent } from "./welcome-page/welcome-page.component";
 
 const appRoutes: Routes = [
-  { 
+  {
     path: 'main',
     loadChildren: 'app/main-page/main-page.module#MainPageModule',
   },

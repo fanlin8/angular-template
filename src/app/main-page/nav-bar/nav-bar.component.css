@@ -1,0 +1,8 @@
+.navbar-pic img{
+  height: 64px;
+}
+
+button#logoutButton {
+	position: absolute;
+	right: 10px;
+}

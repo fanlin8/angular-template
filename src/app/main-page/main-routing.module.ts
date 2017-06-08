@@ -17,7 +17,15 @@ const mainRoutes: Routes = [
       { path: 'page-two', component: PageTwoComponent },
       { path: 'page-three', component: PageThreeComponent },
 
-      { path: 'admin', component: AdminPageComponent },
+      {
+        path: 'admin',
+        loadChildren: 'app/main-page/admin-page/admin-page.module#AdminPageModule',
+      },
+
+      {
+        path: 'login',
+        loadChildren: 'app/main-page/login-page/login-page.module#LoginPageModule',
+      },
     ]
   },
 ]

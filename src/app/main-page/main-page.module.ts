@@ -7,19 +7,19 @@ import { MaterialModule } from "@angular/material";
 
 import { PageOneComponent } from './page-one/page-one.component';
 import { PageTwoComponent } from './page-two/page-two.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
 import { PageThreeComponent } from './page-three/page-three.component';
 import { MainRoutingModule } from "./main-routing.module";
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { InfoPageComponent } from './info-page/info-page.component';
+import { AdminPageModule } from "./admin-page/admin-page.module";
+import { LoginPageModule } from "./login-page/login-page.module";
 
 @NgModule({
   declarations: [
     PageOneComponent,
     PageTwoComponent,
     MainPageComponent,
-    AdminPageComponent,
     PageThreeComponent,
     NavBarComponent,
     FooterComponent,
@@ -27,9 +27,12 @@ import { InfoPageComponent } from './info-page/info-page.component';
   ],
   imports: [
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     MaterialModule,
-    MainRoutingModule
+    MainRoutingModule,
+    LoginPageModule,
+    AdminPageModule
   ],
   entryComponents: [
   ],
