@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { InfoPageComponent } from './info-page/info-page.component';
 import { AdminPageModule } from "./admin-page/admin-page.module";
 import { LoginPageModule } from "./login-page/login-page.module";
+import { CallBackComponent } from './call-back/call-back.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginPageModule } from "./login-page/login-page.module";
     PageThreeComponent,
     NavBarComponent,
     FooterComponent,
-    InfoPageComponent
+    InfoPageComponent,
+    CallBackComponent
   ],
   imports: [
     FormsModule,

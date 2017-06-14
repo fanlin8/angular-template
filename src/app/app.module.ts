@@ -10,8 +10,8 @@ import { AppComponent } from './app.component';
 
 import { MainPageModule } from "app/main-page/main-page.module";
 import { WelcomePageComponent } from "./welcome-page/welcome-page.component";
-import { AuthService } from "app/services/auth.service";
-import { AuthGuardService } from "app/services/auth-guard.service";
+import { AuthService } from "app/services/auth/auth.service";
+import { AuthGuardService } from "app/services/auth/auth-guard.service";
 
 @NgModule({
   declarations: [

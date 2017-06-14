@@ -6,3 +6,8 @@ button#logoutButton {
 	position: absolute;
 	right: 10px;
 }
+
+button#loginButton {
+	position: absolute;
+	right: 10px;
+}

@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { InfoPageComponent } from "app/main-page/info-page/info-page.component";
 import { MainPageComponent } from "app/main-page/main-page.component";
+import { CallBackComponent } from "app/main-page/call-back/call-back.component";
 
 const mainRoutes: Routes = [
   {
@@ -16,6 +17,7 @@ const mainRoutes: Routes = [
       { path: 'page-one', component: PageOneComponent },
       { path: 'page-two', component: PageTwoComponent },
       { path: 'page-three', component: PageThreeComponent },
+      { path: 'callback', component: CallBackComponent },
 
       {
         path: 'admin',

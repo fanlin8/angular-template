@@ -11,7 +11,8 @@
   </md-menu>
 
   <button md-button class="nav-button" routerLink="page-three" routerLinkActive="active">Page Three</button>
-  <button md-button class="nav-button" routerLink="admin" routerLinkActive="active">Admin</button>
+  <button md-button class="nav-button" routerLink="admin" routerLinkActive="active" *ngIf="auth.isAuthenticated()">Admin</button>
 
-  <button md-button id="logoutButton"><md-icon>exit_to_app</md-icon>Logout</button>
+  <button md-button id="logoutButton" *ngIf="auth.isAuthenticated()" (click)="auth.logout()"><md-icon>launch</md-icon>Logout</button>
+  <button md-button id="loginButton" *ngIf="!auth.isAuthenticated()" (click)="auth.login()"><md-icon>exit_to_app</md-icon>Login</button>
 </md-toolbar>

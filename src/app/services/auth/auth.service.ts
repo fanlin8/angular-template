@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
+import { AUTH_CONFIG } from './auth0-variables';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
-import auth0 from 'auth0-js';
+import Auth0Lock from 'auth0-lock';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
@@ -8,36 +10,43 @@ import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class AuthService {
-  isLoggedIn: boolean = false;
 
-  auth0 = new auth0.WebAuth({
-    clientID: '_Yar3zsMuyes5htv43b6MLqThj9tukug',
-    domain: 'angelix.auth0.com',
-    responseType: 'token id_token',
-    audience: 'https://angelix.auth0.com/userinfo',
-    redirectUri: 'http://localhost:14200/main/admin',
-    scope: 'openid'
+  lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
+    oidcConformant: true,
+    autoclose: true,
+    auth: {
+      redirectUrl: AUTH_CONFIG.callbackURL,
+      responseType: 'token id_token',
+      audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+      params: {
+        scope: 'openid'
+      }
+    }
   });
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   login(): void {
-    this.auth0.authorize();
+    this.lock.show();
   }
 
+  // Call this method in app.component
+  // if using path-based routing
   public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
+    this.lock.on('authenticated', (authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
         this.setSession(authResult);
-        this.isLoggedIn = true;
-      } else if (err) {
-        console.log(err);
+        this.router.navigate(['main']);
       }
+    });
+    this.lock.on('authorization_error', (err) => {
+      this.router.navigate(['main']);
+      console.log(err);
+      alert(`Error: ${err.error}. Check the console for further details.`);
     });
   }
 
@@ -54,7 +63,7 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    this.isLoggedIn = false;
+    this.router.navigate(['/']);
   }
 
   public isAuthenticated(): boolean {
