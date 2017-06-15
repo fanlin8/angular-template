@@ -3,6 +3,7 @@ import { AUTH_CONFIG } from './auth0-variables';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import Auth0Lock from 'auth0-lock';
+import auth0 from 'auth0-js';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
@@ -24,8 +25,16 @@ export class AuthService {
     }
   });
 
+  auth0 = new auth0.WebAuth({
+    clientID: AUTH_CONFIG.clientID,
+    domain: AUTH_CONFIG.domain,
+    scope: 'openid profile'
+  });
+
   // store the URL so we can redirect after logging in
   redirectUrl: string;
+
+  userProfile: any;
 
   constructor(private router: Router) {
   }
@@ -56,6 +65,21 @@ export class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+  }
+
+  public getProfile(cb): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access token must exist to fetch profile');
+    }
+
+    const self = this;
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 
   public logout(): void {

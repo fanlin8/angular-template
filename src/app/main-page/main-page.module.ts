@@ -12,7 +12,7 @@ import { MainRoutingModule } from "./main-routing.module";
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { InfoPageComponent } from './info-page/info-page.component';
-import { AdminPageModule } from "./admin-page/admin-page.module";
+import { UserPageModule } from "./user-page/user-page.module";
 import { LoginPageModule } from "./login-page/login-page.module";
 import { CallBackComponent } from './call-back/call-back.component';
 
@@ -34,7 +34,7 @@ import { CallBackComponent } from './call-back/call-back.component';
     MaterialModule,
     MainRoutingModule,
     LoginPageModule,
-    AdminPageModule
+    UserPageModule
   ],
   entryComponents: [
   ],

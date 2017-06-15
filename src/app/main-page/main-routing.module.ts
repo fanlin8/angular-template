@@ -1,4 +1,4 @@
-import { AdminPageComponent } from './admin-page/admin-page.component';
+import { UserPageComponent } from './user-page/user-page.component';
 import { PageThreeComponent } from './page-three/page-three.component';
 import { PageTwoComponent } from './page-two/page-two.component';
 import { PageOneComponent } from './page-one/page-one.component';
@@ -20,8 +20,8 @@ const mainRoutes: Routes = [
       { path: 'callback', component: CallBackComponent },
 
       {
-        path: 'admin',
-        loadChildren: 'app/main-page/admin-page/admin-page.module#AdminPageModule',
+        path: 'user',
+        loadChildren: 'app/main-page/user-page/user-page.module#UserPageModule',
       },
 
       {
