@@ -28,7 +28,8 @@ export class AuthService {
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,
     domain: AUTH_CONFIG.domain,
-    scope: 'openid profile'
+    audience: AUTH_CONFIG.audience,
+    scope: 'openid profile read:articles'
   });
 
   // store the URL so we can redirect after logging in

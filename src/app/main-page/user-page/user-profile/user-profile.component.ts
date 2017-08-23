@@ -1,5 +1,9 @@
+import {Http} from '@angular/http';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+
+import { AuthHttp } from 'angular2-jwt';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,10 +12,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  // push test
   profile: any;
+  message: string;
 
-  constructor(private auth: AuthService) { }
+  constructor(public auth: AuthService, public http: Http, public authHttp: AuthHttp) { }
 
   ngOnInit() {
     if (this.auth.userProfile) {
@@ -21,6 +25,26 @@ export class UserProfileComponent implements OnInit {
         this.profile = profile;
       });
     }
+  }
+
+  apiTest(): void {
+    this.message = '';
+    this.authHttp.get(`http://localhost:9898/article/1`)
+      .map(res => res.json())
+      .subscribe(
+        data => this.message = data.message,
+        error => this.message = error
+      );
+  }
+
+  loginMessage(): void {
+    this.message = '';
+    this.http.get(`http://localhost:9898/login`)
+      .map(res => res.json())
+      .subscribe(
+        data => this.message = data.message,
+        error => this.message = error
+      );
   }
 
 }

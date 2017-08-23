@@ -9,5 +9,11 @@
       <h3 class="nickname">{{ profile?.nickname }}</h3>
     </div>
     <pre class="full-profile">{{ profile | json }}</pre>
+
+    <button md-button (click)="loginMessage()">Get message</button>
+    <div *ngIf="message">{{message}}</div>
+
+    <button md-button (click)="apiTest()">Get article 1</button>
+    <div *ngIf="message">{{message}}</div>
   </div>
 </div>
