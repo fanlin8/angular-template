@@ -18,18 +18,11 @@ export class AuthService {
     auth: {
       redirectUrl: AUTH_CONFIG.callbackURL,
       responseType: 'token id_token',
-      audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+      audience: AUTH_CONFIG.audience,
       params: {
-        scope: 'openid'
+        scope: 'openid profile read:articles'
       }
     }
-  });
-
-  auth0 = new auth0.WebAuth({
-    clientID: AUTH_CONFIG.clientID,
-    domain: AUTH_CONFIG.domain,
-    audience: AUTH_CONFIG.audience,
-    scope: 'openid profile read:articles'
   });
 
   // store the URL so we can redirect after logging in
@@ -75,7 +68,7 @@ export class AuthService {
     }
 
     const self = this;
-    this.auth0.client.userInfo(accessToken, (err, profile) => {
+    this.lock.getUserInfo(accessToken, (err, profile) => {
       if (profile) {
         self.userProfile = profile;
       }
